@@ -1,0 +1,100 @@
+<app-sidebar-conttout></app-sidebar-conttout>
+<app-navbar-conttout></app-navbar-conttout>
+<div class="contenu">
+  <main>
+    <div class="container">
+    <h2>Liste des Plannings</h2>
+    <!-- Liste des plannings -->
+    <div class="container">
+      <button type="button" class="btn btnAdd ajout" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Ajout du planning journalier
+      </button>
+    </div>
+    <div>
+      <div>
+      <table class="table mt-5"  *ngIf="plannings.length">
+        <thead>
+          <tr>
+            <!-- <th scope="col">#</th> -->
+            <th scope="col">Id</th>
+            <th scope="col">Jour</th>
+            <th scope="col">Creneaux première heure</th>
+            <th scope="col">Creneaux deuxième heure</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let planning of plannings">
+            <!-- <th scope="row"></th> -->
+            <td>{{ planning.id }}</td>
+            <td>{{ planning.jour }}</td>
+            <td *ngFor=" let crenaux of planning.creneaux">{{ crenaux.heure_debut }} - {{ crenaux.heure_fin }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="!plannings.length">Aucun planing pour le moment</p>
+    </div>
+    </div>
+  </div>
+    </main>
+  </div>
+
+<!-- ajour -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un planning</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <div>
+          <label for="">Jour</label>
+            <select name="" id="" (change)="selectJour($event)" >
+              <option value="lundi">lundi</option>
+              <option value="mardi">mardi</option>
+              <option value="mercredi">mercredi</option>
+              <option value="jeudi">jeudi</option>
+              <option value="vendredi">vendredi</option>
+              <option value="samedi">samedi</option>
+              <option value="dimanche">dimanche</option>
+            </select>
+          </div>
+          <div class="d-flex ">
+            <div class="mx-3">
+              <label for="">debut</label>
+              <input type="time" name="heure_debut0" id="" [(ngModel)]="planningsObjet.creneaux[0].heure_debut">
+            </div>
+            <div>
+              <label for="">Fin</label>
+              <input type="time" name="heure_fin0" id="" [(ngModel)]="planningsObjet.creneaux[0].heure_fin">
+            </div>
+          </div>
+          <span (click)="addCrenaux()">ajouter un autre créneaux</span>
+          
+          <!-- @if (isSecondCrenaux) {{ -->
+          <div *ngIf="isSecondCrenaux">
+
+            <div class="d-flex ">
+              <div class="mx-3">
+                <label for="">debut</label>
+                <input type="time" name="heure_debut1" id="" [(ngModel)]="planningsObjet.creneaux[1].heure_debut">
+              </div>
+              <div>
+                <label for="">Fin</label>
+                <input type="time" name="heure_fin1" id="" [(ngModel)]="planningsObjet.creneaux[1].heure_fin">
+              </div>
+          </div>
+          </div>
+        <!-- } -->
+          <!-- } -->
+        
+          
+          <div class="modal-footer">
+        <button (click)=" addEvent()" data-bs-dismiss="modal">Ajouter</button>
+        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="ajouterPlanning()">Ajouter </button> -->
+        <!-- <button type="button" class="btn btn-primary" (click)="ajout()" data-bs-dismiss="modal">Ajouter</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
