@@ -27,10 +27,17 @@ import { DashMedecinComponent } from './Dashbord/dash-medecin/dash-medecin.compo
 import { PlanningDuMedecinComponent } from './Dashbord/planning-du-medecin/planning-du-medecin.component';
 import { RendezVousPatientComponent } from './Dashbord/rendez-vous-patient/rendez-vous-patient.component';
 import { adminGuardGuard, authGuardGuard, patientGuardGuard } from './guards/auth-guard.guard';
+import { DashboardPrincipalComponent } from './dashboard-principal/dashboard-principal.component';
+import { DashPrincComponent } from './Dashbord/dash-princ/dash-princ.component';
 // import { AuthentificationComponent } from './AuthentificationComponent/authentification.component';
 
 const routes: Routes = [
-  {path : '',redirectTo : 'accueil', pathMatch :'full' ,},
+  // {
+  //   path: 'dashboard',
+  //   loadChildren: () =>
+  //     import('./Dashbord/dashbord.module').then((m) => m.DashbordModule),
+  //   // canActivate: [AdminGuard],
+  // },
   {path : 'accueil', component : AccueilComponent,},
   {path : 'apropos', component : AproposComponent ,},
   {path : 'medecin', component : ListeMedecinsComponent,},
@@ -55,9 +62,13 @@ const routes: Routes = [
   {path : 'planning', component : PlanningDuMedecinComponent,},
   {path : 'consultationPatient/:id', component : RendezVousPatientComponent,},
   {path : 'priseConsultation/:id', component : CalendrierPlannificationComponent,},
+  {path : 'dashPrinc', component :DashPrincComponent ,},
   // {path : '', component : ,},
   // {path : '', component : ,},
-  // {path : '', component : ,},
+
+
+  {path : '',redirectTo : 'accueil', pathMatch :'full' ,},
+
 ];
 
 @NgModule({

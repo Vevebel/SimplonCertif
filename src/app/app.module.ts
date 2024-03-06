@@ -48,6 +48,8 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashLayoutComponent } from './Dashbord/dash-layout/dash-layout.component';
+import { DashPrincComponent } from './Dashbord/dash-princ/dash-princ.component';
+import { RouterLinkActive, RouterModule } from '@angular/router';
 // import { TokenInterceptorProvider } from './token.interceptor';
 
 @NgModule({
@@ -88,7 +90,8 @@ import { DashLayoutComponent } from './Dashbord/dash-layout/dash-layout.componen
     RendezVousPatientComponent,
     RendezVousPatientComponent,
     CalendrierPlannificationComponent,
-    DashLayoutComponent
+    DashLayoutComponent,
+    DashPrincComponent
     // LitesArticleComponent
   ],
   imports: [
@@ -101,6 +104,10 @@ import { DashLayoutComponent } from './Dashbord/dash-layout/dash-layout.componen
     // CalendarModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    RouterLinkActive,
+    RouterModule,
+    
 
 
   ],

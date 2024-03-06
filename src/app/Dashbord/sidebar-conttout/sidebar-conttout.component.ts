@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthentificationService } from 'src/app/servicesSRNRV/authentification.service';
 
 @Component({
   selector: 'app-sidebar-conttout',
@@ -6,6 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar-conttout.component.css']
 })
 export class SidebarConttoutComponent  implements OnInit {
+[x: string]: any;
+
+  // @Output() toggle = new EventEmitter<void>();
+  // homeCollapsed: boolean = true;
+  // dashboardCollapsed: boolean = true;
+  // Input() sidebarOpen: boolean = false; 
+// sidebarOpen: any;
+  
+  // toggleCollapse(panel: string) {
+  //   if (panel === 'home') {
+  //     this.dashboardCollapsed = true; // Fermer le panneau Dashboard si ouvert
+  //     this.homeCollapsed = !this.homeCollapsed; // Inverser l'état du panneau Home
+  //   } else if (panel === 'dashboard') {
+  //     this.homeCollapsed = true; // Fermer le panneau Home si ouvert
+  //     this.dashboardCollapsed = !this.dashboardCollapsed; // Inverser l'état du panneau Dashboard
+  //   }
+  // }
+
+  constructor(private authservice: AuthentificationService, private router: Router) { }
+
  // Inscription du patient ou du medecin
   // Les variables
 
@@ -15,6 +37,7 @@ export class SidebarConttoutComponent  implements OnInit {
   // idLastUser: number | undefined;
   tabUsers: any;
 
+  isDashboardActive: boolean = false;
 
 
   // Les fonctions

@@ -1,0 +1,41 @@
+<!-- <app-navbar-conttout (toggleSidebar)="toggleSidebar()"></app-navbar-conttout>
+<app-sidebar-conttout [sidebarOpen]="sidebarOpen"></app-sidebar-conttout> -->
+<!-- <div class="main-content">
+
+    <div class="row m-0 p-0">
+        <div class="sidebar border d-md-block col-md-2 m-0 p-0" *ngIf="sidebarOpen">
+            <app-sidebar-conttout class="border"></app-sidebar-conttout>
+        </div>
+
+        <div class="contenu p-0" [ngClass]="{'col-md-10': sidebarOpen, 'col-md-12': !sidebarOpen}">
+            <div class="navbar">
+                <app-navbar-conttout class="w-100 shadow" (toggleSidebarEvent)="toggleSidebar()"></app-navbar-conttout>
+            </div>
+            <div class=" m-0 w-100 p-2 contentPage">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+
+    </div>
+
+</div> -->
+
+<div class="main-content">
+
+    <div class="row m-0 p-0">
+        <div class="sidebar  col-md-2 m-0 p-0" *ngIf="isSidebarVisible" style="border: 2px solid red;">
+            <app-sidebar-conttout></app-sidebar-conttout>
+        </div>
+
+        <div class="contenu p-0" [ngClass]="{'col-md-10': isSidebarVisible, 'col-md-12': !isSidebarVisible}">
+            <div class="navbar">
+                <app-navbar-conttout class="w-100 shadow"></app-navbar-conttout>
+            </div>
+            <div class=" m-0 w-100 p-2 contentPage">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+
+    </div>
+
+</div>

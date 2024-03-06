@@ -1,15 +1,79 @@
 /* a {
-	text-decoration: none;
+	/* text-decoration: none;
 }
 
 li {
 	list-style: none;
-}
- */
+} */
+/* .sidebar{
+    /* border: 1px solid rgb(9, 9, 9); *
+    padding-top: 40px;
+} */
 
+.sidebar ul{
+    padding: 0;
+}
+
+.sidebar li{
+    list-style-type: none;
+    margin-bottom: 5px;
+    padding: 8px 0px 8px 40px;
+}
+
+.sidebar a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+}
+
+.sidebar li i{
+    margin-right: 15px;
+}
+
+.sidebar .dropicon{
+    margin-left: 10px;
+}
+
+.sidebar .active-link {
+    /* Vos styles pour les liens actifs */
+    /* Par exemple : */
+    background-color: #ffffff !important;
+    color: #CE0033;
+}
+
+.sidebar .active-link a {
+    /* Si nécessaire, des styles spécifiques pour les liens actifs à l'intérieur des <a> */
+    /* Par exemple : */
+    color: #CE0033 !important;
+}
+.patient-sidebar .active-link {
+    /* Vos styles pour les liens actifs */
+    /* Par exemple : */
+    background-color: #CE0033 !important;
+    color: #ffffff;
+}
+
+.patient-sidebar .active-link a {
+    /* Si nécessaire, des styles spécifiques pour les liens actifs à l'intérieur des <a> */
+    /* Par exemple : */
+    color: #ffffff !important;
+}
+
+/* .admin-active-bg {
+    /*text-decoration: underline; /* Soulignement du texte *
+    color: #CE0033; /* Couleur du texte *
+	background-color: white;
+}
+.activeLink{
+}
+
+.active-link a{
+    color: #CE0033;
+} */
 /* SIDEBAR */
 #sidebar {
-	position: fixed;
+	position: fixed !important;
 	top: 0;
 	left: 0;
 	width: 280px;
@@ -113,8 +177,11 @@ li {
 }
 .profilecon{
   border-radius: 50%;
-  margin-top: 3vh;
-  width: 25vh;
+  margin-top: 2vh;
+  object-fit: cover;
+  /* width: 25vh; */
+  width: 70%;
+  height: 70% !important;
 }
 .profileconPatient{
   /* border-radius: 50%; */

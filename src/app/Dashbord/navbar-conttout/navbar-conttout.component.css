@@ -12,6 +12,20 @@
 
 }
 
+/* Pour les écrans de taille moyenne et plus grands */
+/* @media screen and (min-width: 768px) {
+	#sidebar {
+	  width: 20% !important; /* Taille originale de la barre latérale *
+	}
+  }
+   */
+  /* Pour les écrans plus petits
+  @media screen and (max-width: 767px) {
+	#sidebar {
+	  display: none !important; /* Masquer le sidebar sur les petits écrans *
+	}
+  } */
+  
 /* NAVBAR */
  nav {
 	height: 56px;
@@ -107,9 +121,9 @@
 	justify-content: center;
 	align-items: center;
 }
- nav .profile img {
-	width: 36px;
-	height: 36px;
+ .profilecon {
+	width: 36px !important;
+	height: 36px !important;
 	object-fit: cover;
 	border-radius: 50%;
 }
@@ -140,3 +154,9 @@
   height: 7vh !important;
   margin-bottom: 49px !important;
 } */
+
+.navabarDash .burger i {
+    font-size: 30px !important;
+    color: #CE0033;
+    cursor: pointer !important;
+}

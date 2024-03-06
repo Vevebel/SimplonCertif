@@ -1,17 +1,45 @@
 
  	<!-- NAVBAR -->
    <nav class="navabarDash fixed-top ">
-    <div>
+    <!-- <div> -->
+      <div class="burger">
+        <!-- <button (click)="onToggleSidebar()" style="color: #CE0033;">Toggle Sidebar</button> -->
 
+        <!-- <i class="fa fa-bars border" (click)="toggleSidebar()" style="color: #CE0033;"></i> -->
+        <!-- <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
+          <i class="fa fa-bars" (click)="toggleSidebar()" style="color: #CE0033;">
+          <span class="navbar-toggler-icon" style="color: #CE0033;"></span>
+        </button> -->
+
+        <button>
+          <i class="fa fa-bars" (click)="toggleSidebar()" style="color: #CE0033;"></i>
+            <!-- <span class="navbar-toggler-icon" style="color: #CE0033;"></span> -->
+        </button>
+
+       <!-- <button class="burger" (click)="toggleSidebar()">
+            <i class="fa fa-bars barMenu"></i>
+       </button> -->
     </div>
+    <!-- </div> -->
     <div class="infoProfileC ">
+
+      <div *ngIf="isAdmin ||isMedecin">
+        <img src="http://127.0.0.1:8000/storage/{{userConnecte.image }}" class="ms-5 profilecon" alt="..." id="imagecard">
+    
+        <!-- <img src="../../../assets/profilAdminbon.png" alt="" class=" ms-5 profilecon"> -->
+      </div>
+      <div *ngIf="isPatient">
+        <img src="../../../assets/logo certification.png" alt="" class=" ms-5 profileconPatient">
+      </div>
       <div class="infoProfileC">
         <a href="#" class="profile">
-          <img src="../../../assets/profilAdminbon.png" class="profilecon"alt="">
+          <!-- <img src="../../../assets/profilAdminbon.png" class="profilecon"alt=""> -->
+          <img src="http://127.0.0.1:8000/storage/{{userConnecte.image }}" class="ms-5 profilecon" alt="..." id="imagecard">
+
           <!-- <img > -->
         </a>
         <div class="profilPlace">
-          <p>Véronique</p>
+          <p>{{userConnecte.nom}}</p>
         </div>
       </div>
       <div class="ms-5 profilPlace">
