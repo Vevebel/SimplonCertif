@@ -21,12 +21,20 @@
           <td>{{ itemUser.role }}</td>
           <td>{{ itemUser.email }}</td>
           <td>{{ itemUser.telephone }}</td>
-          <td> <button>Détails</button>
-            <ng-container *ngIf="itemUser.role === 'medecin'">
+          <!-- <td> <button>Détails</button> -->
+            <!-- <ng-container *ngIf="itemUser.role === 'medecin'">
     <button (click)="validerCompteMedecin(itemUser.id)">Accepter</button>
     <button (click)="refuserCompteMedecin(itemUser.id)">Refuser</button>
-  </ng-container>
-          </td>
+  </ng-container> -->
+  <td> 
+    <button>Détails</button>
+    <ng-container *ngIf="itemUser.role === 'medecin' && itemUser.statut === 'en attente'">
+      <button (click)="validerCompteMedecin(itemUser.id)">Accepter</button>
+      <button (click)="refuserCompteMedecin(itemUser.id)">Refuser</button>
+    </ng-container>
+  </td>
+  
+
         </tr>
       </tbody>
     </table>
@@ -52,4 +60,5 @@
       </tbody>
     </table>
 
-   
+   </main>
+   </div>

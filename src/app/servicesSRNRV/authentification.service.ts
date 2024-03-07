@@ -36,7 +36,10 @@ export class AuthentificationService {
   getToken() {
     return localStorage.getItem('token');
   }
-
+  putProfil(id: number, profil: any): Observable<any> {
+    // Logique pour envoyer les données au serveur
+    return this.http.put<any>(`url/${id}`, profil);
+}
 
   // // Implémentez les méthodes suivantes pour gérer l'ajout, la modification et la suppression d'articles
   // ajoutArticle(formData: FormData): Observable<any> {

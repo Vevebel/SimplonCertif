@@ -6,7 +6,9 @@
   gap: 5vh;
   margin-top: 5vh;
 }
-
+.pagination{
+  justify-content: center;
+}
 .carteInfo{
 height: 29vh;
 border: 3px solid;
@@ -42,10 +44,10 @@ main{
   /* border: 1px solid red; */
 }
 .taileCart{
-  height: 50vh;
+  height: 50vh !important;
 }
 .corpsCart{
-  height: 40vh;
+  height: 30vh;
 }
 .ajout{
   background-color: #CE0033;

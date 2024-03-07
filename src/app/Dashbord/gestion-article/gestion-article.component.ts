@@ -1,17 +1,14 @@
-import { Medecin } from './../../modelSRS/medecin';
-import { ArticleService } from 'src/app/servicesSRNRV/article.service';
 import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/modelSRS/Articles';
+import { ArticleService } from 'src/app/servicesSRNRV/article.service';
 import Swal from 'sweetalert2';
-import { AuthentificationService } from 'src/app/servicesSRNRV/authentification.service';
-import { MedecinService } from 'src/app/servicesSRNRV/medecin.service';
 
 @Component({
   selector: 'app-gestion-article',
   templateUrl: './gestion-article.component.html',
   styleUrls: ['./gestion-article.component.css']
 })
-export class GestionArticleComponent  implements OnInit {
+export class GestionArticleComponent implements OnInit {
   // variables pour les noms des variables
   article: Article = new Article();
 
@@ -22,16 +19,17 @@ export class GestionArticleComponent  implements OnInit {
   updateAt = '';
 
   // liste article
-  articles:any;
-  listeArticle: any[]=[];
+  articles: any;
+  listeArticle: any[] = [];
+  currentPage: number = 1;
+  pageNumbers: number[] = [];
+  // totalPages: number;
+  totalPages: number = 0;
 
   constructor(
-     private authentification : AuthentificationService,
-    private MedecinService: MedecinService,
-    private articleService : ArticleService,
+    private articleService: ArticleService,
   ) {}
 
-  // inserer l'image
   getFile(event: any) {
     console.log('img', this.image);
     console.warn(event.target.files[0]);
@@ -39,53 +37,37 @@ export class GestionArticleComponent  implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getArticle();
-    // let user = JSON.parse(localStorage.getItem("token") || "")
-    // console.log(user);
-    // console.log(JSON.parse(localStorage.getItem("token") ?? '{}').access_token )
-    // this.filteredProduit=this.tabListProduit
-    // this.modifierArticle();
-    // this.ajout();
     this.listerDesArticles();
   }
 
-
-  //methode pour ajouter des prduits
   ajout(): void {
-    {
-      let formData = new FormData();
-      formData.append('titre', this.titre);
-      formData.append('description', this.description);
-      formData.append('image', this.image);
-      console.log('article', formData);
+    let formData = new FormData();
+    formData.append('titre', this.titre);
+    formData.append('description', this.description);
+    formData.append('image', this.image);
 
-      this.articleService.ajoutArticle(formData).subscribe(
-        (rep) => {
-          console.log('réussi POOOOOOOO', rep);
-          localStorage.setItem('userConnect', rep.token);
-          this.listerDesArticles();
-        },
-        (error) => {
-          console.error('erreur', error);
-        }
-      );
-    }
+    this.articleService.ajoutArticle(formData).subscribe(
+      (rep) => {
+        console.log('réussi POOOOOOOO', rep);
+        localStorage.setItem('userConnect', rep.token);
+        this.listerDesArticles();
+      },
+      (error) => {
+        console.error('erreur', error);
+      }
+    );
+
     this.verifierChamps('Félicitation!', 'Produit ajouté', 'success');
 
     this.viderChamps();
   }
 
-  /** fonction pour lister les produits */
-
-
-
-  // lister  produits
   listerDesArticles() {
-    // console.log(this.tabListProduit);
     this.articleService.getArticle().subscribe((response) => {
-      console.log('listeArticle',response );
-      this.articles= response.Articles;
-      console.log("new data",this.articles);
+      console.log('listeArticle', response);
+      this.articles = response.Articles;
+      console.log("new data", this.articles);
+      this.calculatePageNumbers();
     });
   }
 
@@ -94,88 +76,21 @@ export class GestionArticleComponent  implements OnInit {
       this.titre = response.titre;
       this.description = response.description;
       this.image = response.image;
-
-      // Ouvrir la fenêtre modale des détails de l'article
-      // $('#exampleModal-details').modal('show');
     });
   }
 
-  // Méthode pour charger les détails de l'article
-// afficherDetailsArticle(article: any): void {
-//   this.articleService.getArticleDetails(article.id).subscribe((response: any) => {
-//       // Afficher les détails de l'article dans une boîte de dialogue modale
-//       // Swal.fire({
-//       //     title: article.titre,
-//       //     html: `
-//       //         <p>Description: ${article.description}</p>
-//       //         <p>Date de création: ${article.createdAt}</p>
-//       //         <p>Date de mise à jour: ${article.updatedAt}</p>
-//       //         <img src="http://127.0.0.1:8000/storage/${article.image}" alt="Image de l'article" style="max-width: 100%;">
-//       //     `,
-//       //     confirmButtonText: 'Fermer'
-//       // });
-//   });
-// }
-// afficherDetailsArticle(article: any): void {
-//   this.articleService.getArticleDetails(article.id).subscribe((response: any) => {
-//     this.titre = response.titre;
-//     this.description = response.description;
-//     this.image = response.image;
-// console.log(response);
-
-//     // Ouvrir la fenêtre modale des détails de l'article
-//     // $('#exampleModal-details').modal('show');
-//   });
-// }
-
-  // listerDesArticles() {
-  //   console.log(this.listeArticle);
-  //   this.articleService.getArticle().subscribe(
-  //     (responses) => {
-  //       console.log(responses);
-
-  //       this.listeArticle = responses.articles;
-  //       console.log(responses.articles);
-  //     }
-  //   )
-  // }
-
-  // categorie_id: this.categorie_id,
-
-  //  pour recuperer un produit
-  // articleSelectionner: any = {};
-
-  // getArticle() {
-  //   this.articleService.getArticle().subscribe((reponse:any)=>{
-  //     console.log(reponse);
-  //     this.articles=reponse.article.data;
-  //     console.log(this.articles)
-  //   })
-  // }
-
-  // fonction pour modifier
-  //  variable
-  // modifarticle: any;
-
   modifierarticle() {
     let formData = new FormData();
-      formData.append('titre', this.titre,);
-      formData.append('image', this.image,);
-      console.log('image', this.image);
-
-      formData.append('description', this.description,);
+    formData.append('titre', this.titre,);
+    formData.append('image', this.image,);
+    formData.append('description', this.description,);
     this.articleService.updateArticle(this.id, formData).subscribe((response) => {
-        console.log('modifArticle', response);
-        this.listerDesArticles();
-        this.viderChamps();
-
-      });
-      // this.ngOnInit();
-      // this.listerDesArticles();
-      // this.articles;
-
+      console.log('modifArticle', response);
+      this.listerDesArticles();
+      this.viderChamps();
+    });
   }
-  // declare id
+
   id: number = 0;
   chargerInfosArticle(article: any) {
     console.log(article);
@@ -187,10 +102,7 @@ export class GestionArticleComponent  implements OnInit {
     console.log('changer', this.chargerInfosArticle);
   }
 
-  // methode pour supprimer
-
-  supprimerArticle(id:number): void{
-
+  supprimerArticle(id: number): void {
     Swal.fire({
       title: "Etes-vous sur???",
       text: "Vous allez supprimer le article",
@@ -206,72 +118,31 @@ export class GestionArticleComponent  implements OnInit {
         });
       }
     });
-
-    // supprimerArticle(id: number): void {
-    //   this.articleService.deleteArticle(id)
-    //     .subscribe(() => {
-    //       // Supprimer l'article de la liste
-    //       this.articles = this.articles.filter(article => article.id !== id);
-    //     });
-    // }
   }
 
+  calculatePageNumbers(): void {
+    const totalPages = Math.ceil(this.articles.length / 3);
+    this.pageNumbers = Array(totalPages).fill(0).map((_, index) => index + 1);
+  }
+  calculateTotalPages(): number {
+    if (this.articles) {
+      return Math.ceil(this.articles.length / 3); // 3 étant le nombre d'articles par page
+    }
+    return 0;
+  }
+  
+  changePage(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.totalPages) {
+      this.currentPage = pageNumber;
+    }
+  }
 
-
-
-  //Pour faire la recherche
-  filterValue = '';
-  filteredArticle: any;
-
-  // onSearch() {
-  //   // Recherche se fait selon le nom ou le prenom
-  //   this.filteredarticle = this.tabListArticle.filter((elt: any) =>
-  //     elt?.nomProduit.toLowerCase().includes(this.filterValue.toLowerCase())
-  //   );
-  // }
-
-
-  // Pagination
-    //  Attribut pour la pagination
-    //  itemsParPage = 3;
-    //  Nombre d'articles par page
-    //  pageActuelle = 1;
-      // Page actuelle
-     tabMessages: any[] = [];
-     tabMessagesFilter: any[] = [];
-  // Méthode pour déterminer les articles à afficher sur la page actuelle
-  //   getItemsPage(): any[] {
-  //     console.log('pagi',this.getItemsPage)
-  //     if (Array.isArray(this.tabMessagesFilter)) {
-  //     const indexDebut = (this.pageActuelle - 1) * this.itemsParPage;
-  //     const indexFin = indexDebut + this.itemsParPage;
-  //     return this.tabMessagesFilter.slice(indexDebut, indexFin);
-  //   } else {
-  //     return [];
-  //   }
-  // }
-
-  // Méthode pour générer la liste des pages
-  // get pages(): number[] {
-  //   const totalPages = Math.ceil(this.tabMessagesFilter.length / this.itemsParPage);
-  //   return Array(totalPages).fill(0).map((_, index) => index + 1);
-  // }
-
-  // Méthode pour obtenir le nombre total de pages
-  // get totalPages(): number {
-  //   return Math.ceil(this.tabMessagesFilter.length / this.itemsParPage);
-  // }
-
-  // Methode pour vider les champs
   viderChamps() {
-    this.titre= '';
-    // this.prix = '';
-    // this.quantiteTotale = '';
+    this.titre = '';
     this.description = '';
     this.image = '';
   }
 
-  // Méthode pour afficher un sweetalert2 apres vérification
   verifierChamps(title: any, text: any, icon: any) {
     Swal.fire({
       title: title,
@@ -280,10 +151,3 @@ export class GestionArticleComponent  implements OnInit {
     });
   }
 }
-
-// bienSelectionner:any = "";
-// console.log(this.bienSelectionner);
-// console.log(data)
-
-// this.getAllBiens();
-

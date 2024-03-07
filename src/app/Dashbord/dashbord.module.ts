@@ -1,14 +1,17 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+// import { NgModule } from '@angular/core';
+// import { CommonModule } from '@angular/common';
 
-import { DashbordRoutingModule } from './dashbord-routing.module';
+// import { DashbordRoutingModule } from './dashbord-routing.module';
+// import { GestionProfilComponent } from './gestion-profil/gestion-profil.component';
 
 
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    DashbordRoutingModule
-  ]
-})
-export class DashbordModule { }
+// @NgModule({
+//   declarations: [
+//     GestionProfilComponent
+//   ],
+//   imports: [
+//     CommonModule,
+//     DashbordRoutingModule
+//   ]
+// })
+// export class DashbordModule { }

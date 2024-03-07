@@ -4,42 +4,42 @@
   <main>
     <div class="container">
     <div class="cartContenu">
-      <div class="carteInfo">
-        <div class="d-flex class ">
+      <!-- <div class="carteInfo"> -->
+        <!-- <div class="d-flex class "> -->
 
-          <p>Nombre de Patients</p>
-          <i class="bi bi-people-fill"></i>
+          <!-- <p>Nombre de Patients</p> -->
+          <!-- <i class="bi bi-people-fill"></i> -->
           <!-- <img src="../../assets/iconone_Patients-removebg-preview.png" alt=""> -->
-        </div>
+        <!-- </div>
       </div>
       <div class="carteInfo">
         <div class="d-flex">
 
           <p>Nombre de Patients</p>
-          <i class="bi bi-people-fill"></i>
+          <i class="bi bi-people-fill"></i> -->
           <!-- <img src="../../assets/iconone_Patients-removebg-preview.png" alt=""> -->
-        </div>
+        <!-- </div>
       </div>
       <div class="carteInfo">
         <div class="d-flex">
 
           <p>Nombre de Patients</p>
-          <i class="bi bi-people-fill"></i>
+          <i class="bi bi-people-fill"></i> -->
           <!-- <img src="../../assets/iconone_Patients-removebg-preview.png" alt=""> -->
-        </div>
-      </div>
+        <!-- </div> -->
+      <!-- </div> -->
     </div>
     <div class="titre">
       <h3 class="text-white ">Article publiés récemments</h3>
     </div>
     <div class="carteArticle">
-      <div class="row" *ngIf="articles.length">
+      <div class="row carteArticle" *ngIf="articles.length">
         <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let article of articles">
-          <div class="card imgCard" style="width: 18rem;">
+          <!-- <div class="card cartContenu imgCard" style="width: 18rem;">
             <img src="http://127.0.0.1:8000/storage/{{ article.image }}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{ article.title }}</h5>
-              <p class="card-text">{{ article.description | slice:0:300 }}{{ article.description.length > 300 ? '...' : '' }}</p>
+              <p class="card-text">{{ article.description | slice:0:200 }}{{ article.description.length > 200 ? '...' : '' }}</p>
               <a class="text-center d-flex justify-content-center">
                 <a class="text-center d-flex justify-content-center">
                   <i class="fa-solid fa-eye me-4" style="color: #CE0033;"   data-bs-toggle="modal" data-bs-target="#exampleModal-details" (click)="afficherDetailsArticle(article)"></i>
@@ -47,7 +47,20 @@
                   <i class="fa-solid fa-trash-can me-4" style="color: #CE0033;" (click)="supprimerArticle(article.id)"></i>
                 </a>
               </a>
-            </div>
+            </div> -->
+            <div class="card imgCard" style="width: 18rem;">
+              <img src="http://127.0.0.1:8000/storage/{{ article.image }}" class="card-img-top" alt="..." id="imagecard">
+              <div class="card-body taileCart">
+                <div class="corpsCart">
+                  <h5 class="card-title">{{ article.titre }}</h5>
+                  <p class="card-text">{{ article.description | slice:0:200 }}{{ article.description.length > 200 ? '...' : '' }}</p>
+                </div>
+                <a class="text-center d-flex justify-content-center">
+                  <i class="fa-solid fa-eye me-4" style="color: #CE0033;" data-bs-toggle="modal" data-bs-target="#exampleModal-details" (click)="afficherDetailsArticle(article)"></i>
+                  <i class="fa-solid fa-pen me-4" style="color: #CE0033;" data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="chargerInfosArticle(article)"></i>
+                  <i class="fa-solid fa-trash-can me-4" style="color: #CE0033;" (click)="supprimerArticle(article.id)"></i>
+                </a>
+              </div>
           </div>
         </div>
       </div>

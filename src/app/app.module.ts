@@ -50,6 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashLayoutComponent } from './Dashbord/dash-layout/dash-layout.component';
 import { DashPrincComponent } from './Dashbord/dash-princ/dash-princ.component';
 import { RouterLinkActive, RouterModule } from '@angular/router';
+import { GestionProfilComponent } from './Dashbord/gestion-profil/gestion-profil.component';
 // import { TokenInterceptorProvider } from './token.interceptor';
 
 @NgModule({
@@ -91,7 +92,8 @@ import { RouterLinkActive, RouterModule } from '@angular/router';
     RendezVousPatientComponent,
     CalendrierPlannificationComponent,
     DashLayoutComponent,
-    DashPrincComponent
+    DashPrincComponent,
+    GestionProfilComponent,
     // LitesArticleComponent
   ],
   imports: [

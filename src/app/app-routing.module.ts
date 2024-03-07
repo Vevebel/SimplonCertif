@@ -29,6 +29,7 @@ import { RendezVousPatientComponent } from './Dashbord/rendez-vous-patient/rende
 import { adminGuardGuard, authGuardGuard, patientGuardGuard } from './guards/auth-guard.guard';
 import { DashboardPrincipalComponent } from './dashboard-principal/dashboard-principal.component';
 import { DashPrincComponent } from './Dashbord/dash-princ/dash-princ.component';
+import { GestionProfilComponent } from './Dashbord/gestion-profil/gestion-profil.component';
 // import { AuthentificationComponent } from './AuthentificationComponent/authentification.component';
 
 const routes: Routes = [
@@ -63,7 +64,7 @@ const routes: Routes = [
   {path : 'consultationPatient/:id', component : RendezVousPatientComponent,},
   {path : 'priseConsultation/:id', component : CalendrierPlannificationComponent,},
   {path : 'dashPrinc', component :DashPrincComponent ,},
-  // {path : '', component : ,},
+  {path : 'profil', component : GestionProfilComponent,},
   // {path : '', component : ,},
 
 

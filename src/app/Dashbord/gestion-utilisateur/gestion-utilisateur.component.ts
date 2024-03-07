@@ -29,7 +29,9 @@ export class GestionUtilisateurComponent implements OnInit {
 
   listerDesUtilisateurs() {
     this.userService.getUsers().subscribe((response) => {
-      this.Users = response.users;
+      // this.Users = response.users;
+      this.Users = response.users.filter((Users: { role: string; }) => Users.role === 'medecin' || Users.role === 'patient');
+
     });
   }
 

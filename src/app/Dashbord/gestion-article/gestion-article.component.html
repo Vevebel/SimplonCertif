@@ -1,37 +1,39 @@
 <app-sidebar-conttout></app-sidebar-conttout> 
 <app-navbar-conttout></app-navbar-conttout>
 <!-- MAIN -->
-
-  <div class="contenu">
-    <main>
-      <div class="container">
-        <button type="button" class="btn btnAdd ajout" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Ajouter un Article
-        </button>
-        <div class="carteArticle">
-          <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let article of articles">
-            <div class="card imgCard" style="width: 18rem;">
-              <img src="http://127.0.0.1:8000/storage/{{ article.image }}" class="card-img-top" alt="..." id="imagecard">
-              <div class="card-body taileCart">
-                <div class="corpsCart">
-
-                  <h5 class="card-title">{{ article.titre }}</h5>
-                  <p class="card-text">{{ article.description | slice:0:100 }}{{ article.description.length > 100 ? '...' : '' }}</p>
-                  <!-- <p class="card-text">{{ article.description | slice:0:100 }}{{ article.description.length > 100 ? '...' : '' }}</p> -->
-                </div>
-                <a class="text-center d-flex justify-content-center">
-                  <i class="fa-solid fa-eye me-4" style="color: #CE0033;"   data-bs-toggle="modal" data-bs-target="#exampleModal-details" (click)="afficherDetailsArticle(article)"></i>
-                  <i class="fa-solid fa-pen me-4" style="color: #CE0033;" data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)=" chargerInfosArticle(article)"></i>
-                  <i class="fa-solid fa-trash-can me-4" style="color: #CE0033;" (click)="supprimerArticle(article.id)"></i>
-                </a>
+<div class="contenu">
+  <main>
+    <div class="container">
+      <button type="button" class="btn btnAdd ajout" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Ajouter un Article
+      </button>
+      <div class="carteArticle">
+        <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let article of articles">
+          <div class="card imgCard" style="width: 18rem;">
+            <img src="http://127.0.0.1:8000/storage/{{ article.image }}" class="card-img-top" alt="..." id="imagecard">
+            <div class="card-body taileCart">
+              <div class="corpsCart">
+                <h5 class="card-title">{{ article.titre }}</h5>
+                <p class="card-text">{{ article.description | slice:0:100 }}{{ article.description.length > 100 ? '...' : '' }}</p>
               </div>
+              <a class="text-center d-flex justify-content-center">
+                <i class="fa-solid fa-eye me-4" style="color: #CE0033;" data-bs-toggle="modal" data-bs-target="#exampleModal-details" (click)="afficherDetailsArticle(article)"></i>
+                <i class="fa-solid fa-pen me-4" style="color: #CE0033;" data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="chargerInfosArticle(article)"></i>
+                <i class="fa-solid fa-trash-can me-4" style="color: #CE0033;" (click)="supprimerArticle(article.id)"></i>
+              </a>
             </div>
           </div>
         </div>
+      </div>
+      <div class="pagination mt-5 mb-6 g-3 text-center">
+        <button class="me-2" style="color: #CE0033;" [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">&lt;</button>
+        <button *ngFor="let pageNumber of pageNumbers" class="btn btn-secondary" [class.active]="currentPage === pageNumber" (click)="changePage(pageNumber)">{{pageNumber}}</button>
+        <button class="ms-2" style="color: #CE0033;" [disabled]="currentPage === calculateTotalPages()" (click)="changePage(currentPage + 1)">&gt;</button>
+      </div>
     </div>
-    </main>
+  </main>
+</div>
 
-  </div>
 <!-- ajout Article -->
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

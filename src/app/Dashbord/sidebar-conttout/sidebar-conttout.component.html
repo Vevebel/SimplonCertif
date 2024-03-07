@@ -12,10 +12,13 @@
 
     <!-- </div> -->
   <!-- </div> -->
-  <div *ngIf="isAdmin ||isMedecin">
+  <div *ngIf="isMedecin">
     <img src="http://127.0.0.1:8000/storage/{{userConnecte.image }}" class="ms-5 profilecon" alt="..." id="imagecard">
 
     <!-- <img src="../../../assets/profilAdminbon.png" alt="" class=" ms-5 profilecon"> -->
+  </div>
+  <div *ngIf="isAdmin ">
+    <img src="../../../assets/admin.jpg" alt="" class=" ms-5 profileconPatient">
   </div>
   <div *ngIf="isPatient">
     <img src="../../../assets/logo certification.png" alt="" class=" ms-5 profileconPatient">
@@ -39,12 +42,12 @@
         <span class="text" [routerLink]="['/gestion-user']">Gestion utilisateurs</span>
       </a>
     </li>
-    <li routerLinkActive="active-link ">
+    <!-- <li routerLinkActive="active-link ">
       <a style="cursor: pointer;">
         <i class='bx bxs-message-dots' [routerLink]="['/gestion-role']"></i>
         <span class="text" [routerLink]="['/gestion-role']">Gestion Role</span>
       </a>
-    </li>
+    </li> -->
   </ul>
   <ul class="side-menu top" *ngIf="isMedecin">
     <li class="actdasbordMedive" routerLinkActive="active-link ">
@@ -125,11 +128,11 @@
 
   <ul class="side-menu mt-4" *ngIf="isAdmin ||isMedecin || isPatient">
 
-    <li routerLinkActive="active-link " style="cursor: pointer;">
-      <a class="logout">
-        <i class="bi bi-person-fill"></i>
-        <span class="text-white">Profil</span>
+    <!-- <li routerLinkActive="active-link " style="cursor: pointer;">
+      <a class="">
+        <i class="bi bi-person-fill" [routerLink]="['/profil']" ></i>
+        <span class="text-white" [routerLink]="['/profil']">Profil</span>
       </a>
-    </li>
+    </li> -->
   </ul>
 </section>

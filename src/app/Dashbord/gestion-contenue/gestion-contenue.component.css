@@ -14,9 +14,12 @@ main{
   margin: 2% auto;
   /* border: 1px solid red; */
 }
-.taileCart{
-  height: 50vh;
+.imgCard{
+  height: 60vh;
 }
 .corpsCart{
   height: 40vh;
+}
+.pagination{
+  justify-content: center;
 }
